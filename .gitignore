@@ -1,0 +1,4 @@
+/data/*
+!/data/.gitkeep
+/error/nginx/*
+!error/nginx/.gitkeep

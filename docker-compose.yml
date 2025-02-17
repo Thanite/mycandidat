@@ -1,0 +1,64 @@
+
+
+services:
+    nginx:
+        image: nginx
+        container_name: nginx
+        volumes:
+            - ./sites:/etc/nginx/conf.d
+            - ./html:/var/www/html
+            - ./error/nginx:/var/log/nginx
+        networks:
+            - lnmp
+        depends_on:
+            - php
+        expose:
+            - "8000"
+        ports:
+            - "8000:80"
+    php:
+        image: php:8.4-fpm
+        container_name: php
+        volumes:
+            - ./html:/var/www/html
+        networks:
+            - lnmp
+        build:
+            dockerfile: ./php.Dockerfile
+        depends_on:
+            - mariadb
+            - redis
+            - memcached
+        expose:
+            - "9000"
+    mariadb:
+        image: mariadb
+        container_name: db
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: kouhosei
+        volumes:
+            - ./data/mariadb:/var/lib/mysql
+        networks:
+            - lnmp
+        expose:
+            - "3306"
+        ports:
+            - "3306:3306"
+    redis:
+        image: redis
+        volumes:
+            - ./data/redis:/data
+        networks:
+            - lnmp
+        expose:
+            - "6379"
+    memcached:
+        image: memcached
+        networks:
+            - lnmp
+        expose:
+            - "11211"
+
+networks:
+    lnmp:
