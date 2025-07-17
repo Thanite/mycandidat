@@ -16,6 +16,7 @@ RUN apt update && apt install -y \
     zip \
     unzip \
     acl \
+    npm \
     && docker-php-ext-install -j$(nproc) mbstring  \
     pdo pdo_mysql \
     opcache \
