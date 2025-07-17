@@ -15,6 +15,7 @@ RUN apt update && apt install -y \
     git \
     zip \
     unzip \
+    acl \
     && docker-php-ext-install -j$(nproc) mbstring  \
     pdo pdo_mysql \
     opcache \
@@ -22,7 +23,9 @@ RUN apt update && apt install -y \
     dom \
     gd
     # calendar
-	
+
+RUN npm install -D @babel/preset-react --force
+
 RUN curl -sS https://get.symfony.com/cli/installer | bash \
     && mv /root/.symfony5/bin/symfony /usr/local/bin 
 

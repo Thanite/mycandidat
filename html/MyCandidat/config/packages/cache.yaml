@@ -9,7 +9,25 @@ framework:
 
         # Redis
         app: cache.adapter.redis
-        default_redis_provider: redis://localhost:6379
+        default_redis_provider: 'redis://redis:6379'
+
+        pools:
+            doctrine.result_cache_pool:
+                adapter: cache.adapter.redis
+#                provider: app.my_custom_redis_provider
+                provider: 'redis://redis:6379'
+
+            doctrine.system_cache_pool:
+#                provider: app.my_custom_redis_provider
+                adapter: cache.adapter.redis
+                provider: 'redis://redis:6379'
+
+            doctrine.second_level_cache_pool:
+#                provider: app.my_custom_redis_provider
+                adapter: cache.adapter.redis
+                provider: 'redis://redis:6379'
+
+
 
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
@@ -17,3 +35,10 @@ framework:
         # Namespaced pools use the above "app" backend by default
         #pools:
             #my.dedicated.cache: null
+#services:
+#    app.my_custom_redis_provider:
+#        class: \Redis
+#        factory: ['Symfony\Component\Cache\Adapter\RedisAdapter', 'createConnection']
+#        arguments:
+#            - 'redis://localhost:6379'
+#            - { retry_interval: 2, timeout: 10 }
