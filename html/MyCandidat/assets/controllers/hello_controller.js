@@ -1,4 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
+import Hello from '../react/controllers/Hello';
+import {createRoot} from "react-dom/client";
 
 /*
  * This is an example Stimulus controller!
@@ -11,6 +13,11 @@ import { Controller } from '@hotwired/stimulus';
  */
 export default class extends Controller {
     connect() {
-        this.element.textContent = 'Hello Stimulus! Edit me in assets/controllers/hello_controller.js';
+        console.log(this.element)
+        // let el =document.querySelector('#hello')
+        // this.element.textContent = 'Hello Stimulus! Edit me in assets/controllers/hello_controller.js';
+        let root = createRoot(this.element)
+        root.render(<Hello name="rrrrr" />)
+
     }
 }

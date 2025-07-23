@@ -25,6 +25,7 @@ RUN apt update && apt install -y \
     gd
     # calendar
 
+RUN npm install
 RUN npm install -D @babel/preset-react --force
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash \

@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function (props) {
-    return <div>Hello {props.fullName}</div>;
+export default function Hello(props) {
+    return <div>Hell  o {props.name}</div>;
 }
