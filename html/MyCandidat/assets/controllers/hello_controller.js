@@ -14,10 +14,11 @@ import {createRoot} from "react-dom/client";
 export default class extends Controller {
     connect() {
         console.log(this.element)
+        alert(this.element)
         // let el =document.querySelector('#hello')
         // this.element.textContent = 'Hello Stimulus! Edit me in assets/controllers/hello_controller.js';
         let root = createRoot(this.element)
-        root.render(<Hello name="rrrrr" />)
+        root.render(<Hello name="rrrrhffhhhhhr" />)
 
     }
 }

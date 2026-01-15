@@ -12,8 +12,10 @@ services:
             - php
         expose:
             - "8000"
+ #           - "8200"
         ports:
             - "8000:80"
+#            - "8200:82"
     php:
         image: php:8.4-fpm
         container_name: php
@@ -67,6 +69,8 @@ services:
         hostname: redis-commander
         image: rediscommander/redis-commander:latest
         restart: always
+        depends_on:
+            - redis
         networks:
             - lnmp
         environment:
